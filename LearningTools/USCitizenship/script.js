@@ -23,6 +23,7 @@ let currentQuestion = 0;
 let score = 0;
 let incorrect = 0;
 let selectedAnswer = null;
+let currentLanguage = 'en'; // Track current language
 
 // Utility: Fisher-Yates shuffle (mutates array)
 function shuffleArray(arr) {
@@ -44,8 +45,31 @@ function init() {
     submitButton.addEventListener("click", checkAnswer);
     readButton.addEventListener("click", readQuestion);
 
+    // Language toggle listeners
+    document.getElementById('lang-en').addEventListener('change', () => {
+        currentLanguage = 'en';
+        updateLanguageUI();
+        displayQuestion();
+    });
+    document.getElementById('lang-es').addEventListener('change', () => {
+        currentLanguage = 'es';
+        updateLanguageUI();
+        displayQuestion();
+    });
+
     // Start display
     displayQuestion();
+}
+
+// Update UI elements based on selected language
+function updateLanguageUI() {
+    if (currentLanguage === 'en') {
+        submitButton.textContent = 'Submit';
+        readButton.textContent = 'Read Question';
+    } else {
+        submitButton.textContent = 'Enviar';
+        readButton.textContent = 'Leer Pregunta';
+    }
 }
 
 // Function to display question and answers
@@ -57,12 +81,14 @@ function displayQuestion() {
     }
 
     const q = questions[currentQuestion];
-    questionElement.textContent = q.question;
+    const questionText = currentLanguage === 'en' ? q.question : q.question_es;
+    questionElement.textContent = questionText;
     answersElement.innerHTML = "";
     selectedAnswer = null;
 
     // Build answer objects that keep the original index so we can shuffle display
-    const options = q.answers.map((answer, index) => ({ text: answer, origIndex: index }));
+    const answers = currentLanguage === 'en' ? q.answers : q.answers_es;
+    const options = answers.map((answer, index) => ({ text: answer, origIndex: index }));
 
     // Shuffle display order of answers
     shuffleArray(options);
@@ -106,7 +132,9 @@ function checkAnswer() {
         document.getElementById("result").textContent = "Correct!";
     } else {
         incorrect++;
-        document.getElementById("result").textContent = `Incorrect. The correct answer is ${questions[currentQuestion].answers[correctAnswer]}`;
+        const answers = currentLanguage === 'en' ? questions[currentQuestion].answers : questions[currentQuestion].answers_es;
+    const incorrectMsg = currentLanguage === 'en' ? 'Incorrect. The correct answer is' : 'Incorrecto. La respuesta correcta es';
+    document.getElementById("result").textContent = `${incorrectMsg} ${answers[correctAnswer]}`;
     }
 
     document.getElementById("score").textContent = `Score: ${score} correct, ${incorrect} incorrect`;
@@ -123,9 +151,10 @@ function checkAnswer() {
 // Function to read question
 function readQuestion() {
     if (!questions || questions.length === 0) return;
-    const text = questions[currentQuestion].question;
+    const q = questions[currentQuestion];
+    const text = currentLanguage === 'en' ? q.question : q.question_es;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
+    utterance.lang = currentLanguage === 'en' ? "en-US" : "es-ES";
     speechSynthesis.speak(utterance);
 }
 

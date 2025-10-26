@@ -21,7 +21,16 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Text Quiz</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="language" id="lang-en" checked>
+                <label class="btn btn-outline-primary" for="lang-en">English</label>
+                <input type="radio" class="btn-check" name="language" id="lang-es">
+                <label class="btn btn-outline-primary" for="lang-es">Español</label>
+            </div>
+            <h1>Text Quiz</h1>
+            <div style="width: 100px"><!-- spacer for centering --></div>
+        </div>
         <p id="question"></p>
         <div id="answers"></div>
         <button id="submit-btn" class="btn btn-primary">Submit</button>
