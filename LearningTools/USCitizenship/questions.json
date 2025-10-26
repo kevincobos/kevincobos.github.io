@@ -1,0 +1,17 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "answers": ["Berlin", "Paris", "London", "Rome"],
+    "correct": 1
+  },
+  {
+    "question": "What is the largest planet in our solar system?",
+    "answers": ["Earth", "Saturn", "Jupiter", "Uranus"],
+    "correct": 2
+  },
+  {
+    "question": "Who painted the Starry Night?",
+    "answers": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
+    "correct": 1
+  }
+]
