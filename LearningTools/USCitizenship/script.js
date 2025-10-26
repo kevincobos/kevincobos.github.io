@@ -52,11 +52,22 @@ function displayQuestion() {
     answersElement.innerHTML = "";
     selectedAnswer = null;
 
-    q.answers.forEach((answer, index) => {
+    // Build answer objects that keep the original index so we can shuffle display
+    const options = q.answers.map((answer, index) => ({ text: answer, origIndex: index }));
+
+    // Fisher-Yates shuffle
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+
+    options.forEach((opt, displayIndex) => {
         const button = document.createElement("button");
-        button.textContent = answer;
+        button.textContent = opt.text;
         button.classList.add("btn-tag");
-        button.addEventListener("click", () => selectAnswer(index, button));
+        // store original index so correctness check can use the question.correct (which references original indexes)
+        button.dataset.orig = String(opt.origIndex);
+        button.addEventListener("click", () => selectAnswer(displayIndex, button));
         answersElement.appendChild(button);
     });
 }
@@ -66,7 +77,9 @@ function selectAnswer(index, buttonElem) {
     const buttons = document.querySelectorAll(".btn-tag");
     buttons.forEach((button) => button.classList.remove("active"));
     buttonElem.classList.add("active");
-    selectedAnswer = index;
+    // Store the original answer index (from the question's answers array) so checkAnswer can compare to question.correct
+    const orig = buttonElem.dataset.orig;
+    selectedAnswer = orig !== undefined ? parseInt(orig, 10) : index;
 }
 
 // Function to check answer
