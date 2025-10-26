@@ -250,7 +250,7 @@ function checkAnswer() {
     const correctAnswer = questions[currentQuestion].correct - 1; // Convert 1-based to 0-based index
     if (selectedAnswer === correctAnswer) {
         score++;
-    document.getElementById("result").textContent = currentLanguage === 'en' ? "Correct!" : "¡Correcto!";
+    //document.getElementById("result").textContent = currentLanguage === 'en' ? "Correct!" : "¡Correcto!";
     showResultModal(true);
     } else {
         incorrect++;
