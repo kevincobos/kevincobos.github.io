@@ -33,8 +33,7 @@
 		<script>
 			// Simple data-driven menu. Each item must have: id, title, description, url
 			const items = [
-				{ id: 'tool1', title: 'Tool One', description: 'Description for tool one. Useful for quick lookups.', url: 'https://github.com/kevincobos/MathGame01' },
-				{ id: 'tool2', title: 'Tool Two', description: 'Description for tool two. Useful for transformations.', url: 'page2.html' }
+				{ id: 'tool1', title: 'Testing Multiplications', description: 'Asks questions involving multiplications.', url: 'kevincobos.github.io/LearningTools/Multiplications/MainMultiplications.html' },				
 			];
 
 			// Render menu cards
@@ -76,13 +75,7 @@
 					.replaceAll('"', '&quot;')
 					.replaceAll("'", '&#39;');
 			}
-
-			// Add a sample item to demonstrate dynamic behavior
-			document.getElementById('add-sample').addEventListener('click', () => {
-				const newId = 'tool' + (items.length + 1);
-				items.push({ id: newId, title: 'New Tool', description: 'A newly added sample tool.', url: 'page1.html' });
-				renderMenu();
-			});
+			
 
 			// Initial render
 			renderMenu();
