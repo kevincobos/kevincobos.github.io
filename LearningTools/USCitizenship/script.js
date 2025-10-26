@@ -67,14 +67,19 @@ function displayQuestion() {
     // Shuffle display order of answers
     shuffleArray(options);
 
+    // Create a div to hold buttons in a vertical stack
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("d-grid", "gap-2"); // Bootstrap classes for vertical stack with gaps
+    answersElement.appendChild(buttonContainer);
+
     options.forEach((opt, displayIndex) => {
         const button = document.createElement("button");
         button.textContent = opt.text;
-        button.classList.add("btn-tag");
+        button.classList.add("btn-tag", "w-100", "text-start"); // Make full width and left-align text
         // store original index so correctness check can use the question.correct (which references original indexes)
         button.dataset.orig = String(opt.origIndex);
         button.addEventListener("click", () => selectAnswer(displayIndex, button));
-        answersElement.appendChild(button);
+        buttonContainer.appendChild(button); // Append to container instead of answersElement
     });
 }
 
