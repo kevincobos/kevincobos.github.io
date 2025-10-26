@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Tools Menu</title>
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+			<div class="container">
+				<a class="navbar-brand" href="#">Tools Menu</a>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row mb-3 align-items-center">
+				<div class="col">
+					<h1 class="h3">Select a tool</h1>
+					<p class="text-muted">Each item has a short description. Click "Open" to go to the tool's page.</p>
+				</div>
+				<div class="col-auto">
+					<button id="add-sample" class="btn btn-outline-primary">Add sample item</button>
+				</div>
+			</div>
+
+			<div id="menu" class="row gy-3">
+				<!-- Menu cards will be injected here by JavaScript -->
+			</div>
+		</div>
+
+		<script>
+			// Simple data-driven menu. Each item must have: id, title, description, url
+			const items = [
+				{ id: 'tool1', title: 'Tool One', description: 'Description for tool one. Useful for quick lookups.', url: 'https://github.com/kevincobos/MathGame01' },
+				{ id: 'tool2', title: 'Tool Two', description: 'Description for tool two. Useful for transformations.', url: 'page2.html' }
+			];
+
+			// Render menu cards
+			function renderMenu() {
+				const container = document.getElementById('menu');
+				container.innerHTML = '';
+				items.forEach(item => {
+					const col = document.createElement('div');
+					col.className = 'col-12 col-md-6 col-lg-4';
+					col.innerHTML = `
+						<div class="card h-100 shadow-sm">
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title">${escapeHtml(item.title)}</h5>
+								<p class="card-text text-muted flex-grow-1">${escapeHtml(item.description)}</p>
+								<div class="mt-3">
+									<a href="${encodeURI(item.url)}" class="btn btn-primary" role="button">Open</a>
+									<button class="btn btn-outline-secondary btn-sm ms-2" onclick="showInfo('${item.id}')">Info</button>
+								</div>
+							</div>
+						</div>
+					`;
+					container.appendChild(col);
+				});
+			}
+
+			// Show a simple info dialog
+			function showInfo(id) {
+				const it = items.find(i => i.id === id);
+				if (!it) return;
+				alert(it.title + '\n\n' + it.description);
+			}
+
+			// Basic escaping to avoid accidental HTML injection
+			function escapeHtml(str) {
+				return String(str)
+					.replaceAll('&', '&amp;')
+					.replaceAll('<', '&lt;')
+					.replaceAll('>', '&gt;')
+					.replaceAll('"', '&quot;')
+					.replaceAll("'", '&#39;');
+			}
+
+			// Add a sample item to demonstrate dynamic behavior
+			document.getElementById('add-sample').addEventListener('click', () => {
+				const newId = 'tool' + (items.length + 1);
+				items.push({ id: newId, title: 'New Tool', description: 'A newly added sample tool.', url: 'page1.html' });
+				renderMenu();
+			});
+
+			// Initial render
+			renderMenu();
+		</script>
+
+		<!-- Bootstrap JS bundle -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
+
