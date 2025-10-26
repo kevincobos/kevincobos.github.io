@@ -95,7 +95,7 @@ function checkAnswer() {
         return;
     }
 
-    const correctAnswer = questions[currentQuestion].correct;
+    const correctAnswer = questions[currentQuestion].correct - 1; // Convert 1-based to 0-based index
     if (selectedAnswer === correctAnswer) {
         score++;
         document.getElementById("result").textContent = "Correct!";
