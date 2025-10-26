@@ -1,17 +1,172 @@
 [
   {
-    "question": "What is the capital of France?",
-    "answers": ["Berlin", "Paris", "London", "Rome"],
+    "question": "What is the supreme law of the land?",
+    "question_es": "¿Cuál es la ley suprema del país?",
+    "answers": [
+      "The Constitution",
+      "The Declaration of Independence",
+      "The Bill of Rights",
+      "The Federal Register"
+    ],
+    "answers_es": [
+      "La Constitución",
+      "La Declaración de Independencia",
+      "La Carta de Derechos",
+      "El Registro Federal"
+    ],
     "correct": 1
   },
   {
-    "question": "What is the largest planet in our solar system?",
-    "answers": ["Earth", "Saturn", "Jupiter", "Uranus"],
-    "correct": 2
+    "question": "What does the Constitution do?",
+    "question_es": "¿Qué hace la Constitución?",
+    "answers": [
+      "Sets up the government",
+      "Elects the President",
+      "Controls the states",
+      "Funds the military"
+    ],
+    "answers_es": [
+      "Establece el gobierno",
+      "Elige al presidente",
+      "Controla a los estados",
+      "Financia al ejército"
+    ],
+    "correct": 1
   },
   {
-    "question": "Who painted the Starry Night?",
-    "answers": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
+    "question": "The idea of self-government is in the first three words of the Constitution. What are these words?",
+    "question_es": "La idea de autogobierno está en las tres primeras palabras de la Constitución. ¿Cuáles son estas palabras?",
+    "answers": [
+      "We the People",
+      "In God We Trust",
+      "E pluribus unum",
+      "One Nation United"
+    ],
+    "answers_es": [
+      "Nosotros el Pueblo",
+      "En Dios Confiamos",
+      "De muchos, uno",
+      "Una Nación Unida"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What is an amendment?",
+    "question_es": "¿Qué es una enmienda?",
+    "answers": [
+      "A change (to the Constitution)",
+      "A speech by Congress",
+      "A federal law",
+      "A presidential veto"
+    ],
+    "answers_es": [
+      "Un cambio (a la Constitución)",
+      "Un discurso del Congreso",
+      "Una ley federal",
+      "Un veto presidencial"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What do we call the first ten amendments to the Constitution?",
+    "question_es": "¿Cómo llamamos a las primeras diez enmiendas de la Constitución?",
+    "answers": [
+      "The Bill of Rights",
+      "The Federalist Papers",
+      "The Preamble",
+      "The Articles of Confederation"
+    ],
+    "answers_es": [
+      "La Carta de Derechos",
+      "Los Papeles Federalistas",
+      "El Preámbulo",
+      "Los Artículos de la Confederación"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What is one right or freedom from the First Amendment?",
+    "question_es": "¿Cuál es un derecho o libertad de la Primera Enmienda?",
+    "answers": [
+      "Speech",
+      "Voting",
+      "Trial by jury",
+      "Owning property"
+    ],
+    "answers_es": [
+      "La libertad de expresión",
+      "Votar",
+      "Juicio por jurado",
+      "Poseer propiedad"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What is the economic system in the United States?",
+    "question_es": "¿Cuál es el sistema económico de los Estados Unidos?",
+    "answers": [
+      "Capitalist economy",
+      "Socialist economy",
+      "Communist economy",
+      "Feudal system"
+    ],
+    "answers_es": [
+      "Economía capitalista",
+      "Economía socialista",
+      "Economía comunista",
+      "Sistema feudal"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Name one branch or part of the government.",
+    "question_es": "Nombra una rama o parte del gobierno.",
+    "answers": [
+      "Congress",
+      "The Police Department",
+      "The Federal Reserve",
+      "The Post Office"
+    ],
+    "answers_es": [
+      "El Congreso",
+      "El Departamento de Policía",
+      "La Reserva Federal",
+      "El Servicio Postal"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Who makes federal laws?",
+    "question_es": "¿Quién hace las leyes federales?",
+    "answers": [
+      "Congress",
+      "The President",
+      "The Supreme Court",
+      "The Governors"
+    ],
+    "answers_es": [
+      "El Congreso",
+      "El Presidente",
+      "La Corte Suprema",
+      "Los Gobernadores"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "What are the two parts of the U.S. Congress?",
+    "question_es": "¿Cuáles son las dos partes del Congreso de los Estados Unidos?",
+    "answers": [
+      "The Senate and House of Representatives",
+      "The Cabinet and the President",
+      "The Supreme Court and the Senate",
+      "The House and the States"
+    ],
+    "answers_es": [
+      "El Senado y la Cámara de Representantes",
+      "El Gabinete y el Presidente",
+      "La Corte Suprema y el Senado",
+      "La Cámara y los Estados"
+    ],
     "correct": 1
   }
 ]
