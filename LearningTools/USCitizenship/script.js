@@ -185,10 +185,10 @@ function init() {
 // Update UI elements based on selected language
 function updateLanguageUI() {
     if (currentLanguage === 'en') {
-        submitButton.textContent = 'Submit';
+        submitButton.textContent = 'Check Answer';
         readButton.textContent = 'Read Question';
     } else {
-        submitButton.textContent = 'Enviar';
+        submitButton.textContent = 'Chequear Respuesta';
         readButton.textContent = 'Leer Pregunta';
     }
 }
@@ -243,19 +243,21 @@ function selectAnswer(index, buttonElem) {
 // Function to check answer
 function checkAnswer() {
     if (selectedAnswer === null) {
-        document.getElementById("result").textContent = "Please select an answer.";
-        return;
+    document.getElementById("result").textContent = currentLanguage === 'en' ? "Please select an answer." : "Por favor seleccione una respuesta.";
+    return;
     }
 
     const correctAnswer = questions[currentQuestion].correct - 1; // Convert 1-based to 0-based index
     if (selectedAnswer === correctAnswer) {
         score++;
-        document.getElementById("result").textContent = "Correct!";
+    document.getElementById("result").textContent = currentLanguage === 'en' ? "Correct!" : "¡Correcto!";
+    showResultModal(true);
     } else {
         incorrect++;
         const answers = currentLanguage === 'en' ? questions[currentQuestion].answers : questions[currentQuestion].answers_es;
     const incorrectMsg = currentLanguage === 'en' ? 'Incorrect. The correct answer is' : 'Incorrecto. La respuesta correcta es';
-    document.getElementById("result").textContent = `${incorrectMsg} ${answers[correctAnswer]}`;
+  document.getElementById("result").textContent = `${incorrectMsg} ${answers[correctAnswer]}`;
+  showResultModal(false);
     }
 
     document.getElementById("score").textContent = `Score: ${score} correct, ${incorrect} incorrect`;
@@ -267,6 +269,49 @@ function checkAnswer() {
     }
 
     displayQuestion();
+}
+
+// Modal handling
+function showResultModal(isCorrect) {
+  const modal = document.getElementById('result-modal');
+  const title = document.getElementById('modal-title');
+  const body = document.getElementById('modal-body');
+  const q = questions[currentQuestion];
+
+  if (isCorrect) {
+    title.textContent = currentLanguage === 'en' ? 'Correct!' : '¡Correcto!';
+    title.className = 'modal-title-correct';
+    body.innerHTML = currentLanguage === 'en' ? '<p>Good job.</p>' : '<p>Buen trabajo.</p>';
+  } else {
+    title.textContent = currentLanguage === 'en' ? 'Incorrect' : 'Incorrecto';
+    title.className = 'modal-title-incorrect';
+    const questionText = currentLanguage === 'en' ? q.question : q.question_es;
+    const correctAns = currentLanguage === 'en' ? q.answers[q.correct - 1] : q.answers_es[q.correct - 1];
+    body.innerHTML = `<p>${questionText}</p><p><strong>${currentLanguage === 'en' ? 'Correct answer:' : 'Respuesta correcta:'}</strong> ${correctAns}</p>`;
+  }
+
+  // Localize continue button
+  const cont = document.getElementById('modal-continue');
+  cont.textContent = currentLanguage === 'en' ? 'Continue' : 'Continuar';
+
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+
+  // Ensure only one set of listeners
+  cont.onclick = () => {
+    closeModal();
+    // advance to next question
+    currentQuestion++;
+    if (currentQuestion >= questions.length) currentQuestion = 0;
+    displayQuestion();
+  };
+  
+}
+
+function closeModal() {
+  const modal = document.getElementById('result-modal');
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
 }
 
 // Function to read question
