@@ -24,6 +24,15 @@ let score = 0;
 let incorrect = 0;
 let selectedAnswer = null;
 
+// Utility: Fisher-Yates shuffle (mutates array)
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // Get DOM elements once
 const questionElement = document.getElementById("question");
 const answersElement = document.getElementById("answers");
@@ -55,11 +64,8 @@ function displayQuestion() {
     // Build answer objects that keep the original index so we can shuffle display
     const options = q.answers.map((answer, index) => ({ text: answer, origIndex: index }));
 
-    // Fisher-Yates shuffle
-    for (let i = options.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [options[i], options[j]] = [options[j], options[i]];
-    }
+    // Shuffle display order of answers
+    shuffleArray(options);
 
     options.forEach((opt, displayIndex) => {
         const button = document.createElement("button");
@@ -126,9 +132,12 @@ async function loadQuestions() {
         const data = await res.json();
         if (!Array.isArray(data) || data.length === 0) throw new Error('Invalid data');
         questions = data;
+        // Randomize question order once per load/session
+        shuffleArray(questions);
     } catch (err) {
         console.error('Failed to load questions.json, using fallback questions. Error:', err);
         questions = fallbackQuestions;
+        shuffleArray(questions);
     }
 
     init();
