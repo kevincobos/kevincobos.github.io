@@ -1,0 +1,8 @@
+[
+  {
+        "question": "If #dataPeople has #randomNumberOne hours every day to play, how many hours #dataGender gets in #randomNumberTwo days?"
+    },
+    {
+        "question": "#dataPeople has read #randomNumberOne every month, how many books #dataGender reads in #randomNumberTwo months?"
+    }     
+]
