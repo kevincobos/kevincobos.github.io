@@ -54,8 +54,7 @@ function displayQuestion() {
     const nums = (questionText.match(/-?\d+/g) || []).map(Number);
     const a = nums[0] !== undefined ? nums[0] : 1;
     const b = nums[1] !== undefined ? nums[1] : 1;
-    // Use addition instead of multiplication
-    const correctValue = a + b;
+    const correctValue = a * b;
 
     // Decide how many options: random between 4 and 6
     const totalOptions = Math.floor(Math.random() * 3) + 4; // 4..6
@@ -68,17 +67,17 @@ function displayQuestion() {
         const method = Math.floor(Math.random() * 3);
         let candidate;
         if (method === 0) {
-            // small additive/subtractive around the sum
+            // small additive/subtractive
             const delta = Math.floor(Math.random() * (maxDelta + 1)) + 1;
             candidate = correctValue + (Math.random() < 0.5 ? -delta : delta);
         } else if (method === 1) {
-            // perturb the first addend
+            // perturb one factor
             const d = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 3) + 1);
-            candidate = (a + d) + b;
+            candidate = (a + d) * b;
         } else {
-            // perturb the second addend
+            // perturb other factor
             const d = (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 3) + 1);
-            candidate = a + (b + d);
+            candidate = a * (b + d);
         }
         if (!Number.isFinite(candidate)) continue;
         candidate = Math.round(candidate);
